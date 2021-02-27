@@ -1,11 +1,10 @@
 import React from "react";
-import GroupList from "./components/GroupList";
+import TopPage from "./components/Pages/Top";
 
 const app = (): JSX.Element => {
   return (
     <>
-      <h2>Hello Project</h2>
-      <GroupList />
+        <TopPage />
     </>
   );
 };

@@ -11,7 +11,9 @@
     "typecheck": "tsc -p . --noEmit",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint src --fix",
-    "lint:stylelint": "stylelint src --fix"
+    "lint:stylelint": "stylelint src --fix",
+    "api": "node-dev api/app.js",
+    "create": "node api/db/database.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "request": "^2.88.2",
+    "sqlite3": "^5.0.2",
     "styled-components": "^5.1.1",
     "styled-reset": "^4.2.1"
   },
