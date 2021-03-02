@@ -1,6 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('helloProject');
-
 const table = `
     id INTEGER NOT NULL PRIMARY KEY,
     name TEXT NOT NULL,
@@ -37,7 +36,11 @@ db.run(`CREATE TABLE members (${table})`);
 
 // const sth = db.prepare("INSERT INTO members (name, kana, nick_name, age, birth_day, birth_place, group_name, color, date_of_join, date_of_guraduation, blog) VALUES (?,?,?,?,?,?,?,?,?,?.?)");
 for (let xs of data) {
-    db.run(`INSERT INTO members (name, kana, nick_name, age, birth_day, birth_place, group_name, color, date_of_join, date_of_guraduation, blog) VALUES ("${xs.name}","${xs.kana}","${xs.nick_name}","${xs.age}","${xs.birth_day}","${xs.birth_place}","${xs.group_name}","${xs.color}","${xs.date_of_join}","${xs.date_of_guraduation}","${xs.blog}")`,(err) => {
+    const column = Object.keys(xs).join(',');
+    const values = Object.values(xs).map((value) => {
+        return `"${value}"`
+    }).join(',');
+    db.run(`INSERT INTO members (${column}) VALUES (${values})`,(err) => {
         console.log(err)
     });
 }
