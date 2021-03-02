@@ -12,7 +12,7 @@
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint src --fix",
     "lint:stylelint": "stylelint src --fix",
-    "api": "node-dev api/app.js",
+    "api": "node-dev --trace-warnings api/app.js",
     "create": "node api/db/database.js"
   },
   "repository": {
