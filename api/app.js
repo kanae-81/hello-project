@@ -50,16 +50,17 @@ const run = async (sql,db) => {
     });
 };
 
-const convertStr = (req) => {
+const convertStr = (req, row) => {
     let values = [];
     const body = req.body;
     column.forEach((elm) => {
-        const value = body[elm] ? body[elm] : '';
+        const rowData = row ? row[elm] : '';
+        const value = body[elm] ? body[elm] : rowData;
         return values = [...values, value];
     })
     return Object.values(values).map((value) => {
         return `"${value}"`
-    }).join(',');
+    });
 }
 
 // Create a new user
@@ -69,7 +70,7 @@ app.post('/api/v1/members', async (req,res)=> {
   }else {
     // connect database
     const db = new sqlite3.Database(dbName);
-    const str = convertStr(req);
+    const str = convertStr(req).join(',');
 
     try {
       await run(
@@ -96,24 +97,26 @@ app.put('/api/v1/members/:id', async (req,res)=> {
 
         // 現在のユーザー情報
         db.get(`SELECT * FROM members WHERE id = ${id}`, async(err, row) => {
-        if(!row) {
-            res.status(404).send({error: '指定されたメンバーが見つかれません。'})
-        }else {
-            res.json(row);
-            const name = req.body.name ? req.body.name : row.name;
-            const profile = req.body.profile ? req.body.profile : row.profile;
-            const dateOfBirth = req.body.date_of_birth ? req.body.date_of_birth : row.date_of_birth;
-
-            try {
-            await run(
-                `UPDATE members SET name="${name}",profile="${profile}",date_of_birth="${dateOfBirth}" WHERE id=${id}`,
-                db,
-            )
-            res.status(201).send({ message: "メンバー情報を更新しました。" });
-            } catch(e) {
-            res.status(500).send({error: e})
+            if(!row) {
+                return res.status(404).send({error: '指定されたメンバーが見つかれません。'})
+            }else {
+                res.json(row);
+                const str = convertStr(req, row);
+                let data = [];
+                for(i = 0; i < column.length; i++) {
+                    data = [...data, `${column[i]}=${str[i]}`]
+                }
+                data = data.join(',');
+                try {
+                    await run(
+                        `UPDATE members SET ${data} WHERE id=${id}`,
+                        db,
+                    )
+                    res.status(201).send({ message: "メンバー情報を更新しました。" });
+                } catch(e) {
+                    res.status(500).send({error: e})
+                }
             }
-        }
         });
 
         db.close();
