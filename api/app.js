@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname,'public')));
 
 // Get all members
 app.get("/api/v1/members", (req, res) => {
-      // connect database
+    // connect database
     const db = new sqlite3.Database(dbName);
     db.all("SELECT * FROM members", (err, rows) => {
         res.json(rows);
@@ -65,34 +65,34 @@ const convertStr = (req, row) => {
 
 // Create a new user
 app.post('/api/v1/members', async (req,res)=> {
-  if(!req.body.name) {
-    res.status(400).send({error: '名前が指定されていません'})
-  }else {
-    // connect database
-    const db = new sqlite3.Database(dbName);
-    const str = convertStr(req).join(',');
+    if(!req.body.name) {
+        res.status(400).send({error: '名前が指定されていません'})
+    }else {
+        // connect database
+        const db = new sqlite3.Database(dbName);
+        const str = convertStr(req).join(',');
 
-    db.all(
-      `SELECT * FROM members WHERE name LIKE "%${req.body.name}%"`,
-      async(err, rows) => {
-        if (rows.length) {
-          return res
-            .status(400)
-            .send({ error: "すでに追加されているメンバーです"});
+        db.all(
+        `SELECT * FROM members WHERE name LIKE "%${req.body.name}%"`,
+        async(err, rows) => {
+            if (rows.length) {
+            return res
+                .status(400)
+                .send({ error: "すでに追加されているメンバーです"});
+            }
+            try {
+            await run(
+                `INSERT INTO members (${columnStr}) VALUES (${str})`,
+                db
+            );
+            res.status(201).send({message: '新規メンバーを作成しました。'})
+            }catch(e) {
+            res.status(500).send({error: e})
+            }
         }
-        try {
-          await run(
-            `INSERT INTO members (${columnStr}) VALUES (${str})`,
-            db
-          );
-          res.status(201).send({message: '新規メンバーを作成しました。'})
-        }catch(e) {
-          res.status(500).send({error: e})
-        }
-      }
-    );
-    db.close();
-  }
+        );
+        db.close();
+    }
 })
 
 // Update user date
@@ -138,14 +138,14 @@ app.delete('/api/v1/members/:id', async (req,res)=> {
         db.get(`SELECT * FROM members WHERE id = ${id}`, async(err, row) => {
         if(!row) {
             res.status(404).send({
-            error: '指定されたユーザーが見つかれません。',
+                error: '指定されたユーザーが見つかれません。',
             })
         }else {
             try {
-            await run(`DELETE FROM members WHERE id=${id}`, db)
-            res.status(200).send({message: 'メンバーを削除しました'})
+                await run(`DELETE FROM members WHERE id=${id}`, db)
+                res.status(200).send({message: 'メンバーを削除しました'})
             }catch(e) {
-            res.status(500).send({error: e})
+                res.status(500).send({error: e})
             }
         }
         })
@@ -156,5 +156,6 @@ const port = process.env.PORT ||  3001;
 app.get('/', function(req, res){
     res.send('This is Anfield.');
 });
+
 app.listen(port);
 console.log("Listen on port:" + port);
