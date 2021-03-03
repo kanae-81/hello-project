@@ -65,23 +65,32 @@ const convertStr = (req, row) => {
 
 // Create a new user
 app.post('/api/v1/members', async (req,res)=> {
-  if(!req.body) {
-    res.status(400).send({error: 'ユーザー名が指定されていません'})
+  if(!req.body.name) {
+    res.status(400).send({error: '名前が指定されていません'})
   }else {
     // connect database
     const db = new sqlite3.Database(dbName);
     const str = convertStr(req).join(',');
 
-    try {
-      await run(
-        `INSERT INTO members (${columnStr}) VALUES (${str})`,
-        db
-      );
-      res.status(201).send({message: '新規ユーザーを作成しました。'})
-    }catch(e) {
-      res.status(500).send({error: e})
-    }
-
+    db.all(
+      `SELECT * FROM members WHERE name LIKE "%${req.body.name}%"`,
+      async(err, rows) => {
+        if (rows.length) {
+          return res
+            .status(400)
+            .send({ error: "すでに追加されているメンバーです"});
+        }
+        try {
+          await run(
+            `INSERT INTO members (${columnStr}) VALUES (${str})`,
+            db
+          );
+          res.status(201).send({message: '新規メンバーを作成しました。'})
+        }catch(e) {
+          res.status(500).send({error: e})
+        }
+      }
+    );
     db.close();
   }
 })
@@ -89,38 +98,35 @@ app.post('/api/v1/members', async (req,res)=> {
 // Update user date
 app.put('/api/v1/members/:id', async (req,res)=> {
     if (!req.body.name || req.body.name === "") {
-        res.status(400).send({ error: "名前が指定されていません" });
-    } else {
-        // connect database
-        const db = new sqlite3.Database(dbName);
-        const id = req.params.id;
-
-        // 現在のユーザー情報
-        db.get(`SELECT * FROM members WHERE id = ${id}`, async(err, row) => {
-            if(!row) {
-                return res.status(404).send({error: '指定されたメンバーが見つかれません。'})
-            }else {
-                res.json(row);
-                const str = convertStr(req, row);
-                let data = [];
-                for(i = 0; i < column.length; i++) {
-                    data = [...data, `${column[i]}=${str[i]}`]
-                }
-                data = data.join(',');
-                try {
-                    await run(
-                        `UPDATE members SET ${data} WHERE id=${id}`,
-                        db,
-                    )
-                    res.status(201).send({ message: "メンバー情報を更新しました。" });
-                } catch(e) {
-                    res.status(500).send({error: e})
-                }
-            }
-        });
-
-        db.close();
+        return res.status(400).send({ error: "名前が指定されていません" });
     }
+    // connect database
+    const db = new sqlite3.Database(dbName);
+    const id = req.params.id;
+
+    // 現在のユーザー情報
+    db.get(`SELECT * FROM members WHERE id = ${id}`, async(err, row) => {
+        if(!row) {
+            return res.status(404).send({error: '指定されたメンバーが見つかれません。'})
+        }
+        res.json(row);
+        const str = convertStr(req, row);
+        let data = [];
+        for(i = 0; i < column.length; i++) {
+            data = [...data, `${column[i]}=${str[i]}`]
+        }
+        data = data.join(',');
+        try {
+            await run(
+                `UPDATE members SET ${data} WHERE id=${id}`,
+                db,
+            )
+            res.status(201).send({ message: "メンバー情報を更新しました。" });
+        } catch(e) {
+            res.status(500).send({error: e})
+        }
+    });
+    db.close();
 })
 
 // Delete user date
@@ -145,7 +151,6 @@ app.delete('/api/v1/members/:id', async (req,res)=> {
         })
     db.close();
 })
-
 
 const port = process.env.PORT ||  3001;
 app.get('/', function(req, res){
