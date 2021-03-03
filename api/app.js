@@ -30,9 +30,10 @@ app.get("/api/v1/search", (req, res) => {
     // connect database
     const db = new sqlite3.Database(dbName);
     const keyword = req.query.q;
-
+    res.setHeader("Access-Control-Allow-Origin", "*");
     // %でどこが一致するかを指定できる
     db.all(`SELECT * FROM members WHERE kana LIKE "%${keyword}%"`, (err, rows) => {
+        console.log(rows)
         res.json(rows);
     });
     db.close();

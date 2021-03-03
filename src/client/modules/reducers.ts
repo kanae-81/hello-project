@@ -2,23 +2,66 @@ import types from "./actionTypes";
 
 export type InitialState = {
   test: string | undefined;
+  isLoading: boolean;
+  members: any;
+  search: {
+    name: string | undefined;
+    select: {
+      color: string | undefined;
+      group: string | undefined;
+    };
+  };
+  error: string | undefined;
 };
 
 const initialDateState: InitialState = {
-  test: "",
+    test: "",
+    isLoading: false,
+    members: '',
+    search: {
+        name: '',
+        select: {
+            color: '',
+            group:'',
+        }
+    },
+    error: '',
 };
 
 const reducer = (state = initialDateState, action: any) => {
-  switch (action.type) {
+switch (action.type) {
     case types.TEST:
-      return {
-        test: action.payload,
-      };
+        return {
+            ...state,
+            test: action.payload,
+        };
+    case types.SEARCH_NAME_START:
+        return {
+            ...state,
+            isLoading: true,
+            search: {
+                ...state.search,
+                name: action.payload
+            }
+        };
+    case types.SEARCH_NAME_SUCCEED:
+        return {
+          ...state,
+          isLoading: false,
+          members: action.payload,
+        };
+    case types.SEARCH_NAME_FAIL:
+        console.log('fail reducer')
+        return {
+            ...state,
+            isLoading: false,
+            error: action.payload
+        };
     default:
-      return {
-        ...state,
-      };
-  }
+        return {
+            ...state,
+        };
+}
 };
 
 export default reducer;

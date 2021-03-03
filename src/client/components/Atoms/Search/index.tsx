@@ -2,13 +2,14 @@ import React from "react";
 import Presentation from './presentation';
 
 export type Props = {
+    id: string;
     handleChange: () => void;
 }
-const Search = ({handleChange}:Props): JSX.Element => {
+const Search = ({id, handleChange}:Props): JSX.Element => {
 
   return (
     <>
-        <Presentation handleChange={handleChange} />
+        <Presentation id={id} handleChange={handleChange} />
     </>
   );
 };

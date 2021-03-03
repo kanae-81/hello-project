@@ -15,13 +15,13 @@ const SearchBtn = styled(Btn)`
     display: block;
 `
 
-const Presentation = ({handleChange, handleClick}: Props): JSX.Element => {
+const Presentation = ({id, handleChange, handleClick}: Props): JSX.Element => {
     return (
       <>
         <div>
           <h3>名前で探す</h3>
           <Form>
-            <Search handleChange={handleChange} />
+            <Search id={id} handleChange={handleChange} />
             <SearchBtn handleClick={handleClick} text="検索" />
           </Form>
         </div>

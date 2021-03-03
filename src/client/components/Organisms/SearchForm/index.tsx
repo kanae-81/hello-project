@@ -1,22 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {test} from "../../../modules/action";
+import {searchName, test} from "../../../modules/action";
 import Presentation from "./presentation";
 
 export type Props = {
-    handleClick: () => void;
-    handleChange: () => void;
-}
+    id: string;
+  handleClick: () => void;
+  handleChange: () => void;
+};
 
 const SearchForm = (): JSX.Element => {
     const dispatch = useDispatch();
     const handleClick = () => {
-        dispatch(test('test'))
+        const target = document.getElementById("name") as HTMLInputElement;
+        if(!target) return;
+        dispatch(searchName.start(target.value))
     }
     const handleChange = () => {
         dispatch(test('変更'))
     }
-    return <Presentation handleClick={handleClick} handleChange={handleChange} />
+    return <Presentation id="name" handleClick={handleClick} handleChange={handleChange} />
 };
 
 export default SearchForm;
