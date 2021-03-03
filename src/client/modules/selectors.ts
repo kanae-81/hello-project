@@ -1,6 +1,11 @@
 import { createSelector } from "reselect";
 
-export const selectTest = createSelector(
-  [(state:any) => state.test],
-  (test:any) => test
+export const selectSearchValue = createSelector(
+  [(state:any) => state.search],
+  (state:any) => state
+);
+
+export const selectError = createSelector(
+  [(state: any) => state.error],
+  (state: any) => state
 );
