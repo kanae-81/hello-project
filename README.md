@@ -19,3 +19,10 @@ npm run start
 ```
 npm run build
 ```
+
+- api起動
+```
+npm run api
+```
+
+
