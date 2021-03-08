@@ -5,6 +5,11 @@ type: types.TEST,
 payload: test,
 });
 
+export const setErrorMessage = (message: string) => ({
+    type: types.SET_ERROR_MESSAGE,
+    payload: message,
+});
+
 export const searchName = {
     start: (value: string) => ({
         type: types.SEARCH_NAME_START,

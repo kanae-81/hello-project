@@ -14,7 +14,6 @@ const Text = styled.p`
   margin:0;
 `;
 
-
 const Presentation = ({error}:Props): JSX.Element => {
     return (
       <>
