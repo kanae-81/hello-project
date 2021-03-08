@@ -10,6 +10,11 @@ export const selectError = createSelector(
   (state: any) => state
 );
 
+export const selectLoading = createSelector(
+  [(state: any) => state.isLoading],
+  (state: any) => state
+);
+
 export const selectMembers = createSelector(
     [(state: any) => state.members],
     (state: any) => state

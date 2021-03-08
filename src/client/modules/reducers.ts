@@ -49,13 +49,19 @@ switch (action.type) {
           ...state,
           isLoading: false,
           members: action.payload,
+          error: '',
         };
     case types.SEARCH_NAME_FAIL:
-        console.log('fail reducer')
         return {
             ...state,
             isLoading: false,
             error: action.payload
+        };
+    case types.SET_ERROR_MESSAGE:
+        return {
+          ...state,
+          isLoading: false,
+          error: action.payload,
         };
     default:
         return {
