@@ -9,3 +9,8 @@ export const selectError = createSelector(
   [(state: any) => state.error],
   (state: any) => state
 );
+
+export const selectMembers = createSelector(
+    [(state: any) => state.members],
+    (state: any) => state
+);

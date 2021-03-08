@@ -10,7 +10,6 @@ const fetchMembers = async (query: string) => {
     const encoded = encodeURI(uri);
     const res =  await fetch(encoded);
     const result = await res.json()
-    console.log(result);
     return result;
 };
 
