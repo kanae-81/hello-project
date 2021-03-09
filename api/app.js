@@ -39,6 +39,25 @@ app.get("/api/v1/search", (req, res) => {
     db.close();
 });
 
+// Search members matching keyword
+app.get("/api/v1/search/detail", (req, res) => {
+    // connect database
+    const db = new sqlite3.Database(dbName);
+    const color = req.query.color;
+    const group = req.query.group;
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    // %でどこが一致するかを指定できる
+    db.all(
+      `SELECT * FROM members WHERE color LIKE "%${color}%" AND group_name LIKE "%${group}%"`,
+      (err, rows) => {
+        console.log(rows);
+        res.json(rows);
+      }
+    );
+    db.close();
+});
+
 const run = async (sql,db) => {
     return new Promise((resolve, reject) => {
         db.run(sql, (err) => {

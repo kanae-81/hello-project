@@ -10,6 +10,14 @@ export const setErrorMessage = (message: string) => ({
     payload: message,
 });
 
+export const setSelectData = (id: string, value: string) => ({
+    type: types.SET_SELECT_DATA,
+    payload: {
+        id: id,
+        value: value
+    },
+});
+
 export const searchName = {
     start: (value: string) => ({
         type: types.SEARCH_NAME_START,
@@ -23,4 +31,18 @@ export const searchName = {
         type: types.SEARCH_NAME_FAIL,
         payload: message,
     }),
+};
+
+export const searchDetails = {
+  start: () => ({
+    type: types.SEARCH_DETAILS_START,
+  }),
+  succeed: (value: any) => ({
+    type: types.SEARCH_DETAILS_SUCCEED,
+    payload: value,
+  }),
+  fail: (message: string) => ({
+    type: types.SEARCH_DETAILS_FAIL,
+    payload: message,
+  }),
 };
