@@ -32,29 +32,29 @@ const SelectBtn = styled(Btn)`
 `;
 
 const Presentation = ({
-  changeMethod,
+  handleChange,
   handleClick,
   selectList,
 }: Props): JSX.Element => {
   return (
     <>
-    <div>
+      <div>
         <h3>絞り込んで探す</h3>
-      <Form>
-        <SelectBox>
-          {selectList.map((value) => {
-            const { id, name, list } = value;
-            return (
-              <Label htmlFor="" key={id}>
-                {name}
-                <SelectInner handleChange={changeMethod[id]} list={list} />
-              </Label>
-            );
-          })}
-        </SelectBox>
-        <SelectBtn handleClick={handleClick} text="絞り込む" />
-      </Form>
-    </div>
+        <Form>
+          <SelectBox>
+            {selectList.map((value) => {
+              const { id, name, list } = value;
+              return (
+                <Label htmlFor="" key={id}>
+                  {name}
+                  <SelectInner handleChange={handleChange} id={id} list={list} />
+                </Label>
+              );
+            })}
+          </SelectBox>
+          <SelectBtn handleClick={handleClick} text="絞り込む" />
+        </Form>
+      </div>
     </>
   );
 };

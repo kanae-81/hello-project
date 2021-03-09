@@ -47,11 +47,12 @@ const Select = styled.select`
   }
 `;
 
-const Presentation = ({handleChange, list, className}:Props): JSX.Element => {
+const Presentation = ({handleChange, id, list, className}:Props): JSX.Element => {
     return (
       <>
         <Box className={className}>
-          <Select name="" id="" onChange={handleChange}>
+          <Select name="" id={id} onChange={(e) => handleChange(e)}>
+            <option value=""></option>
             {list.map((value, index) => {
               return (
                 <option key={index} value={value}>

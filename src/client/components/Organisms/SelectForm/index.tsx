@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {test} from "../../../modules/action";
+import {searchDetails, setSelectData, test} from "../../../modules/action";
 import Presentation from "./presentation";
 
 export type Props = {
   handleClick: () => void;
-  changeMethod: { [key: string]: () => void };
+  handleChange: (e: any) => void;
   selectList: {
     id: string;
     name: string;
@@ -17,12 +17,13 @@ const SearchForm = (): JSX.Element => {
     const dispatch = useDispatch();
     const handleClick = () => {
       dispatch(test("クリック"));
+      dispatch(searchDetails.start())
     };
-    const handleChange = () => {
-        dispatch(test("変更"));
-    };
-    const changeMethod: { [key: string]: () => void } = {
-      color: handleChange,
+    const handleChange = (e: any) => {
+        const id = e.target.id;
+        const value = e.target.value;
+        if(!id.length) return;
+        dispatch(setSelectData(id, value))
     };
     const colorList = ["赤", "青"];
     const groupList = ["モーニング娘。'21", "アンジュルム"];
@@ -42,7 +43,7 @@ const SearchForm = (): JSX.Element => {
       <>
         <Presentation
           handleClick={handleClick}
-          changeMethod={changeMethod}
+          handleChange={handleChange}
           selectList={selectList}
         />
       </>
