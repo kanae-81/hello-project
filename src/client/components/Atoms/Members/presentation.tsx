@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import {Props} from './index'
+import {Link} from 'react-router-dom'
 
 const Table = styled.table`
   border-spacing: 0;
@@ -26,6 +27,14 @@ const Td = styled.td`
   padding: 8px 16px;
 `;
 
+const LinkItem = styled(Link)`
+    display: block;
+    color: #000;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+`
+
 const Presentation = ({className, list}:Props): JSX.Element => {
     return (
       <>
@@ -41,9 +50,22 @@ const Presentation = ({className, list}:Props): JSX.Element => {
             {list.map((value) => {
               return (
                 <Tr key={value.id}>
-                  <Td>{value.name}</Td>
-                  <Td>{value.kana}</Td>
-                  <Td>{value.group}</Td>
+                  <Td>
+                    <LinkItem to={`/Detail?id=${value.id}`}>
+                      {value.name}
+                    </LinkItem>
+                    　
+                  </Td>
+                  <Td>
+                    <LinkItem to={`/Detail?id=${value.id}`}>
+                      {value.kana}
+                    </LinkItem>
+                  </Td>
+                  <Td>
+                    <LinkItem to={`/Detail?id=${value.id}`}>
+                      {value.group}
+                    </LinkItem>
+                  </Td>
                 </Tr>
               );
             })}
