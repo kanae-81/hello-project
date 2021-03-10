@@ -20,7 +20,7 @@ const Detail = (): JSX.Element => {
       birth_place,
       blog,
       color,
-      date_of_guraduation,
+      date_of_graduation,
       date_of_join,
       group_name,
       kana,
@@ -51,7 +51,7 @@ const Detail = (): JSX.Element => {
                     <td>{date_of_join}</td>
                 </tr>
                 <tr>
-                    <td>{date_of_guraduation}</td>
+                    <td>{date_of_graduation}</td>
                 </tr>
                 <tr>
                     <td>{birth_day}</td>
