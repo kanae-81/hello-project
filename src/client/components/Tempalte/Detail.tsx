@@ -8,6 +8,7 @@ const Main = styled.main`
   margin-top: 20px;
   padding: 0 20px;
 `;
+
 const Table = styled.table`
     border-collapse: collapse;
 `
