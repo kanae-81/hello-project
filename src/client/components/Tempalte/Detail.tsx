@@ -9,6 +9,26 @@ const Main = styled.main`
   padding: 0 20px;
 `;
 
+const Table = styled.table`
+    border-collapse: collapse;
+`
+
+const Th = styled.th`
+    text-align: left;
+    padding: 10px;
+    background-color: lightgray;
+    border: 1px solid gray;
+`
+
+const Td = styled.td`
+    padding: 0 10px;
+    border: 1px solid gray;
+`
+
+const Box = styled.div`
+    margin-top: 20px;
+`
+
 const Detail = (): JSX.Element => {
     const history = useHistory();
     const id = useLocation().search.slice(4);
@@ -32,47 +52,62 @@ const Detail = (): JSX.Element => {
     }
     return (
       <Main>
-        <table>
+        <Table>
             <tbody>
-
                 <tr>
-                    <td>{name}</td>
+                    <Th>名前</Th>
+                    <Td>
+                        <ruby>
+                            <rb>{name}</rb>
+                            <rp>(</rp>
+                            <rt>{kana}</rt>
+                            <rp>)</rp>
+                        </ruby>
+                    </Td>
                 </tr>
                 <tr>
-                    <td>{kana}</td>
+                    <Th>ニックネーム</Th>
+                    <Td>{nick_name}</Td>
                 </tr>
                 <tr>
-                    <td>{nick_name}</td>
+                    <Th>年齢</Th>
+                    <Td>{age}歳</Td>
                 </tr>
                 <tr>
-                    <td>{group_name}</td>
+                    <Th>所属グループ</Th>
+                    <Td>{group_name}</Td>
                 </tr>
                 <tr>
-                    <td>{date_of_join}</td>
+                    <Th>メンバーカラー</Th>
+                    <Td>{color}</Td>
                 </tr>
                 <tr>
-                    <td>{date_of_graduation}</td>
+                    <Th>誕生日</Th>
+                    <Td>{birth_day}</Td>
                 </tr>
                 <tr>
-                    <td>{birth_day}</td>
+                    <Th>出身地</Th>
+                    <Td>{birth_place}</Td>
                 </tr>
                 <tr>
-                    <td>{birth_place}</td>
+                    <Th>加入日</Th>
+                    <Td>{date_of_join}</Td>
                 </tr>
                 <tr>
-                    <td>{age}</td>
+                    <Th>卒業日</Th>
+                    <Td>{date_of_graduation}</Td>
                 </tr>
                 <tr>
-                    <td>{blog}</td>
-                </tr>
-                <tr>
-                    <td>{color}</td>
+                    <Th>ブログ</Th>
+                    <Td>
+                        <a href={blog} target="_blank">{blog}</a>
+                    </Td>
                 </tr>
             </tbody>
-        </table>
-        <div>
+        </Table>
+        <Box>
             <Btn handleClick={handleClick} text='検索画面に戻る' />
-        </div>
+        </Box>
       </Main>
     );
 };

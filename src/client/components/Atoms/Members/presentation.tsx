@@ -11,7 +11,7 @@ const Table = styled.table`
 const Th = styled.th`
     background-color: lightgray;
     border: 1px solid gray;
-    width: 180px;
+    width: 200px;
 `;
 
 const Tr = styled.tr`
@@ -24,15 +24,13 @@ const Tr = styled.tr`
 
 const Td = styled.td`
   border: 1px solid gray;
-  padding: 8px 16px;
 `;
 
 const LinkItem = styled(Link)`
     display: block;
     color: #000;
     text-decoration: none;
-    width: 100%;
-    height: 100%;
+    padding: 8px 16px;
 `
 
 const Presentation = ({className, list}:Props): JSX.Element => {
@@ -63,7 +61,7 @@ const Presentation = ({className, list}:Props): JSX.Element => {
                   </Td>
                   <Td>
                     <LinkItem to={`/Detail?id=${value.id}`}>
-                      {value.group}
+                      {value.group_name}
                     </LinkItem>
                   </Td>
                 </Tr>
