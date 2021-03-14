@@ -33,7 +33,6 @@ app.get("/api/v1/search", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     // %でどこが一致するかを指定できる
     db.all(`SELECT * FROM members WHERE kana LIKE "%${keyword}%"`, (err, rows) => {
-        console.log(rows)
         res.json(rows);
     });
     db.close();
@@ -51,7 +50,6 @@ app.get("/api/v1/search/detail", (req, res) => {
     db.all(
       `SELECT * FROM members WHERE color LIKE "%${color}%" AND group_name LIKE "%${group}%"`,
       (err, rows) => {
-        console.log(rows);
         res.json(rows);
       }
     );
