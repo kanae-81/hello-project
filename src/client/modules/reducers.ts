@@ -35,6 +35,25 @@ switch (action.type) {
       ...state,
       test: action.payload,
     };
+  case types.FETCH_ALLDATA_START:
+    return {
+      ...state,
+      isLoading: true,
+    };
+  case types.FETCH_ALLDATA_SUCCEED:
+    return {
+      ...state,
+      isLoading: false,
+      members: action.payload,
+      error: "",
+    };
+  case types.FETCH_ALLDATA_FAIL:
+    return {
+      ...state,
+      isLoading: false,
+      members: "",
+      error: action.payload,
+    };
   case types.SEARCH_NAME_START:
     return {
       ...state,
@@ -74,7 +93,7 @@ switch (action.type) {
     return {
       ...state,
       isLoading: false,
-      members: '',
+      members: "",
       error: action.payload,
     };
   case types.SET_SELECT_DATA:

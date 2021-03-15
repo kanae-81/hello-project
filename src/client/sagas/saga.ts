@@ -12,6 +12,20 @@ const fetchMembers = async (url: string) => {
     return result;
 };
 
+function* fetchAllMembers() {
+  try {
+    const url = BASE_URL + "/members";
+    const result = yield call(fetchMembers, url);
+    if (result.length) {
+      yield put(searchName.succeed(result));
+    } else {
+      yield put(searchName.fail("メンバー情報が見つかりません"));
+    }
+  } catch (error) {
+    yield put(searchName.fail(error));
+  }
+}
+
 function* searchMemberName() {
     try {
         const searchValue = yield select(selectSearchValue);
@@ -46,6 +60,7 @@ function* searchMemberDetail() {
  * ログアウトのActionがdispatchされるのを監視
  */
 function* watchSearchAction() {
+    yield takeEvery(types.FETCH_ALLDATA_START, fetchAllMembers);
     yield takeEvery(types.SEARCH_NAME_START, searchMemberName);
     yield takeEvery(types.SEARCH_DETAILS_START, searchMemberDetail);
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {Props} from './index'
 
 const Title = styled.h2`
-    font-size: 20px;
+    font-size: 24px;
     color: #000;
     margin: 0;
 `;
