@@ -3,14 +3,16 @@ import { useDispatch } from "react-redux";
 import {searchDetails, setSelectData, test} from "../../../modules/action";
 import Presentation from "./presentation";
 
-export type Props = {
-  handleClick: () => void;
-  handleChange: (e: any) => void;
-  selectList: {
+type SelectList = {
     id: string;
     name: string;
     list: string[];
   }[];
+
+export type Props = {
+  handleClick: () => void;
+  handleChange: (e: any) => void;
+  selectList: SelectList;
 };
 
 const SearchForm = (): JSX.Element => {
@@ -26,7 +28,17 @@ const SearchForm = (): JSX.Element => {
         dispatch(setSelectData(id, value))
     };
     const colorList = ["アクアブルー","イエロー","イタリアンレッド","エメラルドグリーン","オレンジ","グリーン","ゴールドイエロー","シーブルー","スカイブルー","ターコイズ","ディープピンク","デイジー","デイジーイエロー","パープル","ハニー","ピーチ","ピュアレッド","ピンク","ブドウ","ブライトグリーン","ブルー","ホットピンク","マスタード","ミディアムブルー","ミントグリーン","メロン","ライトオレンジ","ライトグリーン","ライトパープル","ライトピンク","ライトブルー","ライトレッド","ライム","ラベンダー","りんご","レモン","レッド","ロイヤルブルー","黄","黄緑","紺","紫","深緑","青","赤","白","緑"];
-    const groupList = ["モーニング娘。", "℃-ute","Berryz工房",,"アンジュルム","Juice=Juice","こぶしファクトリー","つばきファクトリー","カントリー・ガールズ","BEYOOOOONDS"];
+    const groupList = [
+      "モーニング娘。",
+      "℃-ute",
+      "Berryz工房",
+      "アンジュルム",
+      "Juice=Juice",
+      "こぶしファクトリー",
+      "つばきファクトリー",
+      "カントリー・ガールズ",
+      "BEYOOOOONDS",
+    ];
     const selectList = [
       {
         id: "color",
