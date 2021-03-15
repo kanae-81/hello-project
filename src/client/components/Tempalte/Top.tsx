@@ -1,11 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { fetchAllData } from "../../modules/action";
 import {
   selectError,
   selectMembers,
   selectLoading,
 } from "../../modules/selectors";
+import Btn from "../Atoms/Btn";
 import ErrorMessage from "../Atoms/ErrorMessage";
 import Members from "../Atoms/Members";
 import PageTitle from "../Atoms/PageTitle";
@@ -22,19 +24,28 @@ const List = styled(Members)`
     margin-top:40px;
 `;
 
+const AllBtn = styled(Btn)`
+    margin-top: 36px;
+`
+
 const Top = (): JSX.Element => {
+    const dispatch = useDispatch();
     const error = useSelector(selectError)
     const members = useSelector(selectMembers)
     const isLoading = useSelector(selectLoading)
+    const handleClick = () => {
+        dispatch(fetchAllData.start())
+    }
     return (
       <Main>
-        {!isLoading || <Loading />}
+        {isLoading && <Loading />}
         <h1>Hello Project</h1>
         <PageTitle text="ハロプロメンバーを探す" />
         <SearchForm />
         <SelectForm />
-        {!error || <ErrorMessage error={error} />}
-        {!members.length || <List list={members} />}
+        <AllBtn handleClick={handleClick} text="全メンバーを表示する" />
+        {error && <ErrorMessage error={error} />}
+        {!!members.length && <List list={members} />}
       </Main>
     );
 };

@@ -7,17 +7,18 @@ import {Props} from './index'
 
 const Form = styled.form`
   width: 100%;
+  display: flex;
+  align-items: flex-end;
 `;
 const Label = styled.label`
-  display: flex;
-  align-items: center;
+    text-align: center;
   &:not(:first-child) {
     margin-left: 20px;
   }
 `;
 
 const SelectInner = styled(Select)`
-  margin-left: 10px;
+  margin-top: 4px;
 `;
 
 const SelectBox = styled.div`
@@ -27,7 +28,7 @@ const SelectBox = styled.div`
 `;
 
 const SelectBtn = styled(Btn)`
-  margin-top: 10px;
+  margin-left: 20px;
   display: block;
 `;
 

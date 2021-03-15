@@ -18,6 +18,21 @@ export const setSelectData = (id: string, value: string) => ({
     },
 });
 
+
+export const fetchAllData = {
+  start: () => ({
+    type: types.FETCH_ALLDATA_START,
+  }),
+  succeed: (value: any) => ({
+    type: types.FETCH_ALLDATA_SUCCEED,
+    payload: value,
+  }),
+  fail: (message: string) => ({
+    type: types.FETCH_ALLDATA_FAIL,
+    payload: message,
+  }),
+};
+
 export const searchName = {
     start: (value: string) => ({
         type: types.SEARCH_NAME_START,

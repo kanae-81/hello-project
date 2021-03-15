@@ -19,6 +19,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.get("/api/v1/members", (req, res) => {
     // connect database
     const db = new sqlite3.Database(dbName);
+    res.setHeader("Access-Control-Allow-Origin", "*");
     db.all("SELECT * FROM members", (err, rows) => {
         res.json(rows);
     });
