@@ -12,12 +12,21 @@ const Input = styled.input`
     }
 `;
 
-const Presentation = ({id,handleChange}: Props): JSX.Element => {
-    return (
-        <>
-            <Input id={id} onChange={handleChange} type="text"/>
-        </>
-    );
+const Presentation = ({
+  id,
+  handleChange,
+  placeholder,
+}: Props): JSX.Element => {
+  return (
+    <>
+      <Input
+        id={id}
+        onChange={handleChange}
+        type="text"
+        placeholder={placeholder}
+      />
+    </>
+  );
 };
 
 export default Presentation;

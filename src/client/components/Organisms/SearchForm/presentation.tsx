@@ -14,19 +14,36 @@ const SearchBtn = styled(Btn)`
     margin-left: 20px;
     display: block;
 `
+const Err = styled.p`
+    display: inline-block;
+    color: red;
+    padding: 0;
+    margin: 0;
+`;
 
-const Presentation = ({id, handleChange, handleClick}: Props): JSX.Element => {
-    return (
-      <>
-        <div>
-          <h3>名前で探す</h3>
-          <Form>
-            <Search id={id} handleChange={handleChange} />
-            <SearchBtn handleClick={handleClick} text="検索" />
-          </Form>
-        </div>
-      </>
-    );
+const Presentation = ({
+  id,
+  handleChange,
+  handleClick,
+  placeholder,
+  err,
+}: Props): JSX.Element => {
+  return (
+    <>
+      <div>
+        <h3>名前で探す</h3>
+        <Form>
+          <Search
+            id={id}
+            handleChange={handleChange}
+            placeholder={placeholder}
+          />
+          <SearchBtn handleClick={handleClick} text="検索" />
+        </Form>
+        {err && <Err>{err}</Err>}
+      </div>
+    </>
+  );
 };
 
 export default Presentation;
