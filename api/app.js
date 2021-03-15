@@ -5,7 +5,7 @@ const path  = require('path');
 const bodyParser = require('body-parser');
 
 const dbName = 'helloProject';
-const column = ['name', 'kana', 'nick_name', 'age', 'birth_day', 'birth_place', 'group_name', 'color', 'date_of_join', 'date_of_guraduation', 'blog'];
+const column = ['name', 'kana', 'nick_name', 'age', 'birth_day', 'birth_place', 'group_name', 'color', 'date_of_join', 'date_of_graduation', 'blog'];
 const columnStr = column.join(',');
 
 // リクエストのbodyをパースする設定

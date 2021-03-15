@@ -279,19 +279,20 @@ const data = [
 
 ]
 
-// SQL 文を逐次処理する
-db.serialize();
-db.run(`DROP TABLE members`);
-db.run(`CREATE TABLE members (${table})`);
+// 内部の処理を同期的に実行する
+db.serialize(() => {
+    db.run(`DROP TABLE members`);
+    db.run(`CREATE TABLE members (${table})`);
 
-// const sth = db.prepare("INSERT INTO members (name, kana, nick_name, age, birth_day, birth_place, group_name, color, date_of_join, date_of_graduation, blog) VALUES (?,?,?,?,?,?,?,?,?,?.?)");
-for (let xs of data) {
-    const column = Object.keys(xs).join(',');
-    const values = Object.values(xs).map((value) => {
-        return `"${value}"`
-    }).join(',');
-    db.run(`INSERT INTO members (${column}) VALUES (${values})`,(err) => {
-        console.log(err)
-    });
-}
-db.close();
+    // const sth = db.prepare("INSERT INTO members (name, kana, nick_name, age, birth_day, birth_place, group_name, color, date_of_join, date_of_graduation, blog) VALUES (?,?,?,?,?,?,?,?,?,?.?)");
+    for (let xs of data) {
+        const column = Object.keys(xs).join(',');
+        const values = Object.values(xs).map((value) => {
+            return `"${value}"`
+        }).join(',');
+        db.run(`INSERT INTO members (${column}) VALUES (${values})`,(err) => {
+            console.log(err)
+        });
+    }
+    db.close();
+});
