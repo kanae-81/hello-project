@@ -1,21 +1,23 @@
 import { createSelector } from "reselect";
+import { InitialState, Search } from "./reducers";
+import { Member } from "../types/index";
 
 export const selectSearchValue = createSelector(
-  [(state:any) => state.search],
-  (state:any) => state
+  [(state: InitialState) => state.search],
+  (state: Search) => state
 );
 
 export const selectError = createSelector(
-  [(state: any) => state.error],
-  (state: any) => state
+  [(state: InitialState) => state.error],
+  (state: string) => state
 );
 
 export const selectLoading = createSelector(
-  [(state: any) => state.isLoading],
-  (state: any) => state
+  [(state: InitialState) => state.isLoading],
+  (state: boolean) => state
 );
 
 export const selectMembers = createSelector(
-    [(state: any) => state.members],
-    (state: any) => state
+  [(state: InitialState) => state.members],
+  (state: Member[]) => state
 );

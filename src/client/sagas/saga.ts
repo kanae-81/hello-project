@@ -2,20 +2,22 @@ import { takeEvery, fork, all, call, put, select } from "redux-saga/effects";
 import { searchName } from "../modules/action";
 import types from '../modules/actionTypes';
 import { selectSearchValue } from "../modules/selectors";
+import { Member } from "../types/index"
+import { Search } from "../modules/reducers";
 
 const BASE_URL = "http://localhost:3001/api/v1";
 
 const fetchMembers = async (url: string) => {
-    const encoded = encodeURI(url);
-    const res =  await fetch(encoded);
-    const result = await res.json()
-    return result;
+  const encoded = encodeURI(url);
+  const res = await fetch(encoded);
+  const result = await res.json();
+  return result;
 };
 
 function* fetchAllMembers() {
   try {
     const url = BASE_URL + "/members";
-    const result = yield call(fetchMembers, url);
+    const result: Member[] = yield call(fetchMembers, url);
     if (result.length) {
       yield put(searchName.succeed(result));
     } else {
@@ -28,9 +30,9 @@ function* fetchAllMembers() {
 
 function* searchMemberName() {
     try {
-        const searchValue = yield select(selectSearchValue);
+        const searchValue: Search = yield select(selectSearchValue);
         const url = BASE_URL + "/search?q=" + searchValue.name;
-        const result = yield call(fetchMembers, url);
+        const result: Member[] = yield call(fetchMembers, url);
         if(result.length) {
             yield put(searchName.succeed(result));
         }else {
@@ -43,9 +45,9 @@ function* searchMemberName() {
 
 function* searchMemberDetail() {
   try {
-    const searchValue = yield select(selectSearchValue);
+    const searchValue: Search = yield select(selectSearchValue);
   const url = `${BASE_URL}/search/detail?color=${searchValue.select.color}&group=${searchValue.select.group}`;
-    const result = yield call(fetchMembers, url);
+    const result: Member[] = yield call(fetchMembers, url);
     if (result.length) {
       yield put(searchName.succeed(result));
     } else {

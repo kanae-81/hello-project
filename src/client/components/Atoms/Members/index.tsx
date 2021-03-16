@@ -1,10 +1,11 @@
 import React from "react";
 import Presentation from './presentation'
+import { Member } from "../../../types";
 
 export type Props = {
-    list: {[key:string]: string}[]
-    className?: string;
-}
+  list: Member[];
+  className?: string;
+};
 
 const Members = ({list, className}:Props): JSX.Element => {
     return (
