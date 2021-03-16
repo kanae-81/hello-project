@@ -4,6 +4,7 @@ import { useHistory, useLocation } from "react-router";
 import styled from "styled-components";
 import { selectMembers } from "../../modules/selectors";
 import Btn from "../Atoms/Btn";
+import { Member } from "../../types"
 
 const Main = styled.main`
   margin-top: 20px;
@@ -34,7 +35,9 @@ const Detail = (): JSX.Element => {
     const history = useHistory();
     const id = useLocation().search.slice(4);
     const members = useSelector(selectMembers);
-    const target = members.filter((value: any) => value.id.toString() === id)[0];
+    const target = members.filter(
+      (value: Member) => value.id.toString() === id
+    )[0];
     const {
       age,
       birth_day,

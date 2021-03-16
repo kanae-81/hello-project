@@ -2,6 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import {Props} from './index'
 import {Link} from 'react-router-dom'
+import { Member } from "../../../types";
 
 const Table = styled.table`
   border-spacing: 0;
@@ -45,7 +46,7 @@ const Presentation = ({className, list}:Props): JSX.Element => {
             </tr>
           </thead>
           <tbody>
-            {list.map((value) => {
+            {list.map((value: Member) => {
               return (
                 <Tr key={value.id}>
                   <Td>

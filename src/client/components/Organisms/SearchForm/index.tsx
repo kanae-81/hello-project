@@ -4,11 +4,11 @@ import {searchName, test} from "../../../modules/action";
 import Presentation from "./presentation";
 
 export type Props = {
-  id: string;
-  handleClick: () => void;
-  handleChange: () => void;
-  placeholder: string;
-  err: string;
+    id: string;
+    handleClick: () => void;
+    handleChange: () => void;
+    placeholder: string;
+    err: string;
 };
 
 const SearchForm = (): JSX.Element => {
