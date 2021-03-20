@@ -7,7 +7,8 @@ export type Props = {
     className?: string;
 }
 
-const Btn = ({handleClick, text, className}:Props): JSX.Element => {
+const Btn = ({...props}:Props): JSX.Element => {
+    const {handleClick, text, className} = props;
     return (
     <>
         <Presentation handleClick={handleClick} text={text} className={className} />

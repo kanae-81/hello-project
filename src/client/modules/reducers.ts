@@ -32,6 +32,7 @@ export type InitialState = {
 //         type: 'FETCH_ALLDATA_SUCCEED' | 'SEARCH_NAME_SUCCEED' | 'SEARCH_DETAILS_SUCCEED';
 //         payload: Member[];
 //     };
+
 type ActionType = {
   type: string;
   payload?: string | Member[] | { id: string; value: string };

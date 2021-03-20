@@ -2,6 +2,7 @@ import React from "react";
 import TopPage from "./components/Pages/Top";
 import {BrowserRouter as Router, Route } from "react-router-dom"
 import DetailPage from "./components/Pages/Detail";
+import Button from "./components/Atoms/Bottun";
 
 const app = (): JSX.Element => {
   return (

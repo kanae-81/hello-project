@@ -8,8 +8,7 @@ import { Search } from "../modules/reducers";
 const BASE_URL = "http://localhost:3001/api/v1";
 
 const fetchMembers = async (url: string) => {
-  const encoded = encodeURI(url);
-  const res = await fetch(encoded);
+  const res = await fetch(url);
   const result = await res.json();
   return result;
 };
