@@ -52,13 +52,11 @@ const SearchForm = (): JSX.Element => {
       },
     ];
     return (
-      <>
         <Presentation
-          handleClick={handleClick}
-          handleChange={handleChange}
-          selectList={selectList}
+            handleClick={handleClick}
+            handleChange={handleChange}
+            selectList={selectList}
         />
-      </>
     );
 };
 
