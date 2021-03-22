@@ -7,11 +7,9 @@ export type Props = {
 
 
 const PageTitle = ({text}:Props): JSX.Element => {
-  return (
-    <>
+    return (
         <Presentation text={text} />
-    </>
-  );
+    );
 };
 
 export default PageTitle;

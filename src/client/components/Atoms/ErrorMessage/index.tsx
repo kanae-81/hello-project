@@ -8,10 +8,8 @@ export type Props = {
 
 const ErrorMessage = ({error}: Props): JSX.Element => {
     return (
-    <>
         <Presentation error={error} />
-    </>
-  );
+    );
 };
 
 export default ErrorMessage;

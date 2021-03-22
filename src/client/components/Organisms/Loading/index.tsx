@@ -3,9 +3,7 @@ import Presentation from "./presentation";
 
 const Loading = (): JSX.Element => {
     return (
-      <>
         <Presentation />
-      </>
     );
 };
 
