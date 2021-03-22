@@ -1,63 +1,23 @@
 import types from './actionTypes';
-import {Member} from  '../types'
 
-export const test = (test:string) => ({
-    type: types.TEST,
-    payload: test,
-});
-
-export const setErrorMessage = (message: string) => ({
-    type: types.SET_ERROR_MESSAGE,
-    payload: message,
-});
-
-export const setSelectData = (id: string, value: string) => ({
-    type: types.SET_SELECT_DATA,
-    payload: {
-        id: id,
-        value: value
-    },
-});
+export const test = types.TEST;
+export const setErrorMessage = types.SET_ERROR_MESSAGE;
+export const setSelectData = types.SET_SELECT_DATA;
 
 export const fetchAllData = {
-    start: () => ({
-        type: types.FETCH_ALLDATA_START,
-    }),
-    succeed: (value: Member[]) => ({
-        type: types.FETCH_ALLDATA_SUCCEED,
-        payload: value,
-    }),
-    fail: (message: string) => ({
-        type: types.FETCH_ALLDATA_FAIL,
-        payload: message,
-    }),
+    start: types.FETCH_ALLDATA_START,
+    succeed: types.FETCH_ALLDATA_SUCCEED,
+    fail: types.FETCH_ALLDATA_FAIL,
 };
 
 export const searchName = {
-    start: (value: string) => ({
-        type: types.SEARCH_NAME_START,
-        payload: value,
-    }),
-    succeed: (value: Member[]) => ({
-        type: types.SEARCH_NAME_SUCCEED,
-        payload: value,
-    }),
-    fail: (message: string) => ({
-        type: types.SEARCH_NAME_FAIL,
-        payload: message,
-    }),
+    start: types.SEARCH_NAME_START,
+    succeed: types.SEARCH_NAME_SUCCEED,
+    fail: types.SEARCH_NAME_FAIL,
 };
 
 export const searchDetails = {
-    start: () => ({
-        type: types.SEARCH_DETAILS_START,
-    }),
-    succeed: (value: Member[]) => ({
-        type: types.SEARCH_DETAILS_SUCCEED,
-        payload: value,
-    }),
-    fail: (message: string) => ({
-        type: types.SEARCH_DETAILS_FAIL,
-        payload: message,
-    }),
+    start: types.SEARCH_DETAILS_START,
+    succeed: types.SEARCH_DETAILS_SUCCEED,
+    fail: types.SEARCH_DETAILS_FAIL,
 };
