@@ -1,127 +1,108 @@
 import types from "./actionTypes";
 import { Member } from "../types/index";
-import { Action } from "redux";
-import { isType } from "typescript-fsa";
+import { reducerWithInitialState } from "typescript-fsa-reducers";
 
 export type Search = {
-  name: string;
-  select: {
-	color: string;
-	group: string;
-  };
+    name: string;
+    select: {
+        color: string;
+        group: string;
+    };
 };
 
 export type InitialState = {
-  test: string;
-  isLoading: boolean;
-  members: Member[];
-  search: Search;
-  error: string;
+    test: string;
+    isLoading: boolean;
+    members: Member[];
+    search: Search;
+    error: string;
 };
 
 const initialDateState: InitialState = {
-  test: "",
-  isLoading: false,
-  members: [],
-  search: {
-	name: "",
-	select: {
-	  color: "",
-	  group: "",
-	},
-  },
-  error: "",
+    test: "",
+    isLoading: false,
+    members: [],
+    search: {
+        name: "",
+        select: {
+        color: "",
+        group: "",
+        },
+    },
+    error: "",
 };
 
-const reducer = (state = initialDateState, action: Action) => {
-    if (isType(action, types.TEST)) {
-        return {
-            ...state,
-            test: action.payload,
-        }
-    }  else if (isType(action, types.FETCH_ALLDATA_START)) {
-        return {
-            ...state,
-            isLoading: true,
-        };
-    } else if (isType(action, types.FETCH_ALLDATA_SUCCEED)) {
-        return {
-            ...state,
-            isLoading: false,
-            members: action.payload,
-            error: "",
-        };
-    } else if (isType(action, types.FETCH_ALLDATA_FAIL)) {
-        return {
-            ...state,
-            isLoading: false,
-            members: [],
-            error: action.payload,
-        };
-    } else if (isType(action, types.SEARCH_NAME_START)) {
-        return {
-            ...state,
+const reducer = reducerWithInitialState(initialDateState)
+    .case(types.TEST, (state, test) => ({
+        ...state,
+        test: test,
+    }))
+    .case(types.FETCH_ALLDATA_START, (state) => ({
+        ...state,
+        isLoading: true,
+    }))
+    .case(types.FETCH_ALLDATA_SUCCEED, (state,members) => ({
+        ...state,
+        isLoading: false,
+        members: members,
+        error: "",
+    }))
+    .case(types.FETCH_ALLDATA_FAIL, (state,error) => ({
+        ...state,
+        isLoading: false,
+        members: [],
+        error: error,
+    }))
+    .case(types.SEARCH_NAME_START, (state,name) => ({
+        ...state,
             isLoading: true,
             search: {
-            ...state.search,
-            name: action.payload,
-            },
-        };
-    } else if (isType(action, types.SEARCH_NAME_SUCCEED)) {
-        return {
-            ...state,
-            isLoading: false,
-            members: action.payload,
-            error: "",
-        };
-    } else if (isType(action, types.SEARCH_NAME_FAIL)) {
-        return {
-            ...state,
-            isLoading: false,
-            members: [],
-            error: action.payload,
-        };
-    } else if (isType(action, types.SEARCH_DETAILS_START)){
-        return {
-            ...state,
-            isLoading: true,
-        };
-    } else if (isType(action, types.SEARCH_DETAILS_SUCCEED)){
-        return {
-            ...state,
-            isLoading: false,
-            members: action.payload,
-            error: "",
-        };
-    } else if (isType(action, types.SEARCH_DETAILS_FAIL)){
-        return {
-            ...state,
-            isLoading: false,
-            members: [],
-            error: action.payload,
-        };
-    } else if (isType(action, types.SET_SELECT_DATA)){
-        return {
-            ...state,
+                ...state.search,
+                name: name,
+        },
+    }))
+    .case(types.SEARCH_NAME_SUCCEED, (state,members) => ({
+        ...state,
+        isLoading: false,
+        members: members,
+        error: "",
+    }))
+    .case(types.SEARCH_NAME_FAIL, (state,error) => ({
+        ...state,
+        isLoading: false,
+        members: [],
+        error: error,
+    }))
+    .case(types.SEARCH_DETAILS_START, (state) => ({
+        ...state,
+        isLoading: true,
+    }))
+    .case(types.SEARCH_DETAILS_SUCCEED, (state,members) => ({
+        ...state,
+        isLoading: false,
+        members: members,
+        error: "",
+    }))
+    .case(types.SEARCH_DETAILS_FAIL, (state,error) => ({
+        ...state,
+        isLoading: false,
+        members: [],
+        error: error,
+    }))
+    .case(types.SET_SELECT_DATA, (state, values) => ({
+        ...state,
             search: {
             ...state.search,
             select: {
                 ...state.search.select,
-                [action.payload.id]: action.payload.value,
+                [values.id]: values.value,
             },
-            },
-        };
-    } else if (isType(action, types.SET_ERROR_MESSAGE)){
-        return {
-            ...state,
-            isLoading: false,
-            error: action.payload,
-        };
-    } else {
-        return {
-            ...state,
-        };
-    }
-};
+        },
+    }))
+    .case(types.SET_ERROR_MESSAGE, (state,error) => ({
+        ...state,
+        isLoading: false,
+        error: error,
+    }));
 
 export default reducer;
