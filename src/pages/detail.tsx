@@ -1,5 +1,5 @@
 import React from "react";
-import Detail from "../Tempalte/Detail";
+import Detail from "../components/Tempalte/Detail";
 
 const DetailPage = (): JSX.Element => {
     return (

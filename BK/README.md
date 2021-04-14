@@ -8,10 +8,10 @@
 npm i
 ```
 
-- サーバー立ち上げ http://localhost:3000/
+- サーバー立ち上げ http://localhost:8080/
 
 ```
-npm run dev
+npm run start
 ```
 
 - ビルド
