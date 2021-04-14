@@ -33,6 +33,7 @@ const Box = styled.div`
 
 const Detail = (): JSX.Element => {
     const history = useHistory();
+    console.log(useLocation().search);
     const id = useLocation().search.slice(4);
     const members = useSelector(selectMembers);
     const target = members.filter(

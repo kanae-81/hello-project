@@ -1,8 +1,9 @@
 import React from "react";
 import styled from 'styled-components';
 import {Props} from './index'
-import {Link} from 'react-router-dom'
+import Link from "next/link";
 import { Member } from "../../../types";
+import { useLocation } from "react-router";
 
 const Table = styled.table`
   border-spacing: 0;
@@ -50,18 +51,17 @@ const Presentation = ({className, list}:Props): JSX.Element => {
               return (
                 <Tr key={value.id}>
                   <Td>
-                    <LinkItem to={`/Detail?id=${value.id}`}>
+                    <LinkItem href={`/detail?id=${value.id}`}>
                       {value.name}
                     </LinkItem>
-                    　
                   </Td>
                   <Td>
-                    <LinkItem to={`/Detail?id=${value.id}`}>
+                    <LinkItem href={`/detail?id=${value.id}`}>
                       {value.kana}
                     </LinkItem>
                   </Td>
                   <Td>
-                    <LinkItem to={`/Detail?id=${value.id}`}>
+                    <LinkItem href={`/detail?id=${value.id}`}>
                       {value.group_name}
                     </LinkItem>
                   </Td>
