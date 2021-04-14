@@ -6,8 +6,8 @@ export type Props = {
   className?: string;
 };
 
-const ErrorMessage = ({ error }: Props): JSX.Element => {
-  return <Presentation error={error} />;
+const ErrorMessage: React.VFC<Props> = ({ ...props }) => {
+  return <Presentation {...props} />;
 };
 
 export default ErrorMessage;

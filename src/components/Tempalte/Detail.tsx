@@ -31,7 +31,7 @@ const Box = styled.div`
   margin-top: 20px;
 `;
 
-const Detail = (): JSX.Element => {
+const Detail: React.VFC = () => {
   const router = useRouter();
   const id = router.query.id;
   const members = useSelector(selectMembers);

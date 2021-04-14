@@ -34,7 +34,8 @@ const LinkItem = styled(Link)`
   padding: 8px 16px;
 `;
 
-const Presentation = ({ className, list }: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { className, list } = props;
   return (
     <>
       <Table className={className}>

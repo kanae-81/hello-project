@@ -46,12 +46,8 @@ const Select = styled.select`
   }
 `;
 
-const Presentation = ({
-  handleChange,
-  id,
-  list,
-  className,
-}: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { handleChange, id, list, className } = props;
   return (
     <>
       <Box className={className}>

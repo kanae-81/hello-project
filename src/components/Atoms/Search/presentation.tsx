@@ -12,11 +12,8 @@ const Input = styled.input`
   }
 `;
 
-const Presentation = ({
-  id,
-  handleChange,
-  placeholder,
-}: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { id, handleChange, placeholder } = props;
   return (
     <>
       <Input

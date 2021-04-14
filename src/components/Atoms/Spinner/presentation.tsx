@@ -49,7 +49,7 @@ const SpringSpinnerRotator = styled.div`
   transform: rotate(-200deg);
 `;
 
-const Presentation = (): JSX.Element => {
+const Presentation: React.VFC = () => {
   return (
     <>
       <SpringSpinner>

@@ -7,8 +7,8 @@ export type Props = {
   className?: string;
 };
 
-const Members = ({ list, className }: Props): JSX.Element => {
-  return <Presentation list={list} className={className} />;
+const Members: React.VFC<Props> = ({ ...props }) => {
+  return <Presentation {...props} />;
 };
 
 export default Members;

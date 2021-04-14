@@ -8,15 +8,8 @@ export type Props = {
   className?: string;
 };
 
-const Select = ({ handleChange, id, list, className }: Props): JSX.Element => {
-  return (
-    <Presentation
-      handleChange={handleChange}
-      list={list}
-      id={id}
-      className={className}
-    />
-  );
+const Select: React.VFC<Props> = ({ ...props }) => {
+  return <Presentation {...props} />;
 };
 
 export default Select;

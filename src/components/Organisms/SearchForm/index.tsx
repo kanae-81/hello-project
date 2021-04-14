@@ -11,7 +11,7 @@ export type Props = {
     err: string;
 };
 
-const SearchForm = (): JSX.Element => {
+const SearchForm: React.VFC = () => {
     const dispatch = useDispatch();
     const [err,setError] = useState("");
     const isHiragana = (str:string) => {

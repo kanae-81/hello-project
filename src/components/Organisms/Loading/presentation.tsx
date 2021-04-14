@@ -17,7 +17,7 @@ const Overlay = styled.div`
   z-index: 2000;
 `;
 
-const Presentation = (): JSX.Element => {
+const Presentation: React.VFC = () => {
   return (
     <>
       <Overlay>

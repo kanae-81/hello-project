@@ -32,11 +32,8 @@ const SelectBtn = styled(Btn)`
   display: block;
 `;
 
-const Presentation = ({
-  handleChange,
-  handleClick,
-  selectList,
-}: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { handleChange, handleClick, selectList } = props;
   return (
     <>
       <div>

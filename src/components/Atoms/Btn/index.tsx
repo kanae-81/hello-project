@@ -7,14 +7,10 @@ export type Props = {
   className?: string;
 };
 
-const Btn = ({ handleClick, text, className }: Props): JSX.Element => {
+const Btn: React.VFC<Props> = ({ ...props }) => {
   return (
     <>
-      <Presentation
-        handleClick={handleClick}
-        text={text}
-        className={className}
-      />
+      <Presentation {...props} />
     </>
   );
 };

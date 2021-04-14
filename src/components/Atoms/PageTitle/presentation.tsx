@@ -8,7 +8,8 @@ const Title = styled.h2`
   margin: 0;
 `;
 
-const Presentation = ({ text }: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { text } = props;
   return (
     <>
       <Title>{text}</Title>

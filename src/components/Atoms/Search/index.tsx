@@ -6,14 +6,9 @@ export type Props = {
   handleChange: () => void;
   placeholder?: string;
 };
-const Search = ({ id, handleChange, placeholder }: Props): JSX.Element => {
-  return (
-    <Presentation
-      id={id}
-      handleChange={handleChange}
-      placeholder={placeholder}
-    />
-  );
+
+const Search: React.VFC<Props> = ({ ...props }) => {
+  return <Presentation {...props} />;
 };
 
 export default Search;

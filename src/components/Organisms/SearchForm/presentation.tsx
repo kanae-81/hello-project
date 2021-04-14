@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ProgressPlugin } from "webpack";
 import Btn from "../../Atoms/Btn";
 import Search from "../../Atoms/Search";
 import { Props } from "./index";
@@ -21,13 +22,8 @@ const Err = styled.p`
   margin: 0;
 `;
 
-const Presentation = ({
-  id,
-  handleChange,
-  handleClick,
-  placeholder,
-  err,
-}: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { id, handleChange, handleClick, placeholder, err } = props;
   return (
     <>
       <div>

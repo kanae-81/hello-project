@@ -15,7 +15,7 @@ export type Props = {
   selectList: SelectList;
 };
 
-const SearchForm = (): JSX.Element => {
+const SearchForm: React.VFC = () => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(test("クリック"));

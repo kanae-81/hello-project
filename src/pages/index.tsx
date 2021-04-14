@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import React from "react";
 import Top from "../components/Tempalte/Top";
 
-const TopPage = (): JSX.Element => {
+const TopPage: NextPage = () => {
   return <Top />;
 };
 

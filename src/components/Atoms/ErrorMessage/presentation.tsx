@@ -14,7 +14,8 @@ const Text = styled.p`
   margin: 0;
 `;
 
-const Presentation = ({ error }: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { error } = props;
   return (
     <>
       <Box>

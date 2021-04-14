@@ -1,7 +1,7 @@
 import React from "react";
 import Presentation from "./presentation";
 
-const Spinner = (): JSX.Element => {
+const Spinner: React.VFC = () => {
   return <Presentation />;
 };
 

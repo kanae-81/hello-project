@@ -5,8 +5,8 @@ export type Props = {
   text: string;
 };
 
-const PageTitle = ({ text }: Props): JSX.Element => {
-  return <Presentation text={text} />;
+const PageTitle: React.VFC<Props> = ({ ...props }) => {
+  return <Presentation {...props} />;
 };
 
 export default PageTitle;

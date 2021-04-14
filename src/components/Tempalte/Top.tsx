@@ -28,7 +28,7 @@ const AllBtn = styled(Btn)`
   margin-top: 36px;
 `;
 
-const Top = (): JSX.Element => {
+const Top: React.VFC = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const members = useSelector(selectMembers);

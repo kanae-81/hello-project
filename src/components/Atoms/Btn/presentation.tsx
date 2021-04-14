@@ -16,7 +16,8 @@ const Button = styled.button`
   }
 `;
 
-const Presentation = ({ className, handleClick, text }: Props): JSX.Element => {
+const Presentation: React.VFC<Props> = ({ ...props }) => {
+  const { className, handleClick, text } = props;
   return (
     <>
       <Button className={className} type="button" onClick={handleClick}>
