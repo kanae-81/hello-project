@@ -5,7 +5,7 @@ import { selectSearchValue } from "../modules/selectors";
 import { Member } from "../types/index"
 import { Search } from "../modules/reducers";
 
-const BASE_URL = "http://localhost:3001/api/v1";
+const BASE_URL = "/api/v1";
 
 const fetchMembers = async (url: string) => {
   const encoded = encodeURI(url);
