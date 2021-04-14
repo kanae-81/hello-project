@@ -1,6 +1,6 @@
 import React from "react";
-import styled from 'styled-components';
-import {Props} from './index'
+import styled from "styled-components";
+import { Props } from "./index";
 
 const Box = styled.div`
   position: relative;
@@ -31,7 +31,6 @@ const Box = styled.div`
   }
 `;
 
-
 const Select = styled.select`
   min-width: 120px;
   padding: 6px 24px 6px 8px;
@@ -43,27 +42,32 @@ const Select = styled.select`
   background: transparent;
   border: none;
   &:focus {
-      outline:none;
+    outline: none;
   }
 `;
 
-const Presentation = ({handleChange, id, list, className}:Props): JSX.Element => {
-    return (
-      <>
-        <Box className={className}>
-          <Select name="" id={id} onChange={(e) => handleChange(e)}>
-            <option value=""></option>
-            {list.map((value, index) => {
-              return (
-                <option key={index} value={value}>
-                  {value}
-                </option>
-              );
-            })}
-          </Select>
-        </Box>
-      </>
-    );
+const Presentation = ({
+  handleChange,
+  id,
+  list,
+  className,
+}: Props): JSX.Element => {
+  return (
+    <>
+      <Box className={className}>
+        <Select name="" id={id} onChange={(e) => handleChange(e)}>
+          <option value=""></option>
+          {list.map((value, index) => {
+            return (
+              <option key={index} value={value}>
+                {value}
+              </option>
+            );
+          })}
+        </Select>
+      </Box>
+    </>
+  );
 };
 
 export default Presentation;

@@ -1,24 +1,24 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import Btn from "../../Atoms/Btn";
 import Search from "../../Atoms/Search";
-import {Props} from './index'
+import { Props } from "./index";
 
 const Form = styled.form`
-    width: 100%;
-    display:flex;
-    align-items: center;
-`
+  width: 100%;
+  display: flex;
+  align-items: center;
+`;
 
 const SearchBtn = styled(Btn)`
-    margin-left: 20px;
-    display: block;
-`
+  margin-left: 20px;
+  display: block;
+`;
 const Err = styled.p`
-    display: inline-block;
-    color: red;
-    padding: 0;
-    margin: 0;
+  display: inline-block;
+  color: red;
+  padding: 0;
+  margin: 0;
 `;
 
 const Presentation = ({

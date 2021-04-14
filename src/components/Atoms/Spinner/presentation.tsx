@@ -1,5 +1,5 @@
 import React from "react";
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
 const SpinnerAnimation = keyframes`
     0% {
@@ -50,18 +50,18 @@ const SpringSpinnerRotator = styled.div`
 `;
 
 const Presentation = (): JSX.Element => {
-    return (
-      <>
-        <SpringSpinner>
-          <SpringSpinnerPartTop>
-            <SpringSpinnerRotator />
-          </SpringSpinnerPartTop>
-          <SpringSpinnerPartBottom>
-            <SpringSpinnerRotator />
-          </SpringSpinnerPartBottom>
-        </SpringSpinner>
-      </>
-    );
+  return (
+    <>
+      <SpringSpinner>
+        <SpringSpinnerPartTop>
+          <SpringSpinnerRotator />
+        </SpringSpinnerPartTop>
+        <SpringSpinnerPartBottom>
+          <SpringSpinnerRotator />
+        </SpringSpinnerPartBottom>
+      </SpringSpinner>
+    </>
+  );
 };
 
 export default Presentation;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Btn from "../../Atoms/Btn";
 import Select from "../../Atoms/Select";
 
-import {Props} from './index'
+import { Props } from "./index";
 
 const Form = styled.form`
   width: 100%;
@@ -11,7 +11,7 @@ const Form = styled.form`
   align-items: flex-end;
 `;
 const Label = styled.label`
-    text-align: center;
+  text-align: center;
   &:not(:first-child) {
     margin-left: 20px;
   }
@@ -48,7 +48,11 @@ const Presentation = ({
               return (
                 <Label htmlFor="" key={id}>
                   {name}
-                  <SelectInner handleChange={handleChange} id={id} list={list} />
+                  <SelectInner
+                    handleChange={handleChange}
+                    id={id}
+                    list={list}
+                  />
                 </Label>
               );
             })}

@@ -1,16 +1,20 @@
 import React from "react";
-import Presentation from './presentation'
+import Presentation from "./presentation";
 
 export type Props = {
-    handleClick: () => void;
-    text: string;
-    className?: string;
-}
+  handleClick: () => void;
+  text: string;
+  className?: string;
+};
 
-const Btn = ({handleClick, text, className}:Props): JSX.Element => {
-    return (
+const Btn = ({ handleClick, text, className }: Props): JSX.Element => {
+  return (
     <>
-        <Presentation handleClick={handleClick} text={text} className={className} />
+      <Presentation
+        handleClick={handleClick}
+        text={text}
+        className={className}
+      />
     </>
   );
 };
