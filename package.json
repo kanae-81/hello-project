@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "api": "node-dev --trace-warnings api/app.js",
-    "create": "node api/db/database.js",
+    "create": "node db/database.js",
     "lint": "npm run lint:eslint && npm run lint:stylelint",
     "lint:eslint": "eslint src --fix",
     "lint:stylelint": "stylelint src --fix"
